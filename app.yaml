@@ -1,0 +1,27 @@
+application: amatalks
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /bootstrap
+  static_dir: bootstrap
+
+- url: /assets
+  static_dir: assets
+
+- url: /cover
+  static_dir: cover
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: .*
+  script: guestbook.app
+  secure: always
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
