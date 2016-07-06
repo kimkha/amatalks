@@ -18,6 +18,9 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /\.well-known/.*
+  script: guestbook.app
+
 - url: .*
   script: guestbook.app
   secure: always
