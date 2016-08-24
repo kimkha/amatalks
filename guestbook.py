@@ -13,6 +13,12 @@ class MainPage(webapp2.RequestHandler):
     print path
     self.response.out.write(template.render(path, {}))
 
+class AgendaPage(webapp2.RequestHandler):
+  def get(self):
+    path = os.path.join(os.path.dirname(__file__), 'agenda.html')
+    print path
+    self.response.out.write(template.render(path, {}))
+
 class LetsEncryptHandler(webapp2.RequestHandler):
   def get(self, challenge):
     self.response.headers['Content-Type'] = 'text/plain'
@@ -24,5 +30,6 @@ class LetsEncryptHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
   ('/.well-known/acme-challenge/([\w-]+)', LetsEncryptHandler),
+  ('/agenda', AgendaPage),
   ('/', MainPage)
 ], debug=True)

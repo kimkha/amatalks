@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="This week topic: MongoDB, Git&amp;SVN">
+    <meta name="author" content="AMATalks">
+    <link rel="icon" href="/favicon.ico">
+    <meta property="og:image" itemprop="thumbnailUrl" content="/cover/logo.png" />
+
+    <title>AMATalks - Ask me anything</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/cover/cover.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+<div class="container">
+  <textarea rows=10 cols=100 id="input" ></textarea>
+  
+  <div id="result">
+  </div>
+</div>
+
+<!--
+Lời mở đầu
+CHƯƠNG 1: CÁC ĐIỀU KHOẢN BAN ĐẦU VÀ CÁC ĐỊNH NGHĨA CHUNG
+CHƯƠNG 2: ĐỐI XỬ QUỐC GIA VÀ MỞ CỬA THỊ TRƯỜNG ĐỐI VỚI HÀNG HÓA
+CHƯƠNG 3: QUY TẮC XUẤT XỨ VÀ CÁC THỦ TỤC CHỨNG NHẬN XUẤT XỨ
+CHƯƠNG 4: DỆT MAY
+CHƯƠNG 5: QUẢN LÝ HẢI QUAN VÀ TẠO THUẬN LỢI THƯƠNG MẠI
+CHƯƠNG 6: PHÒNG VỆ THƯƠNG MẠI
+CHƯƠNG 7: CÁC BIỆN PHÁP AN TOÀN THỰC PHẨM VÀ KIỂM DỊCH ĐỘNG THỰC VẬT
+CHƯƠNG 8: HÀNG RÀO KỸ THUẬT ĐỐI VỚI THƯƠNG MẠI
+CHƯƠNG 9: ĐẦU TƯ
+CHƯƠNG 10: THƯƠNG MẠI DỊCH VỤ XUYÊN BIÊN GIỚI
+CHƯƠNG 11: DỊCH VỤ TÀI CHÍNH
+CHƯƠNG 12: NHẬP CẢNH TẠM THỜI CHO KHÁCH KINH DOANH
+CHƯƠNG 13: VIỄN THÔNG
+CHƯƠNG 14: THƯƠNG MẠI ĐIỆN TỬ
+CHƯƠNG 15: MUA SẮM CHÍNH PHỦ
+CHƯƠNG 16: CHÍNH SÁCH CẠNH TRANH
+CHƯƠNG 17: DOANH NGHIỆP THUỘC SỞ HỮU NHÀ NƯỚC VÀ ĐỘC QUYỀN CHỈ ĐỊNH
+CHƯƠNG 18: SỞ HỮU TRÍ TUỆ
+CHƯƠNG 19: LAO ĐỘNG
+CHƯƠNG 20: MÔI TRƯỜNG
+CHƯƠNG 21: HỢP TÁC VÀ NÂNG CAO NĂNG LỰC
+CHƯƠNG 22: NÂNG CAO SỨC CẠNH TRANH VÀ THUẬN LỢI HÓA HOẠT ĐỘNG KINH DOANH
+CHƯƠNG 23: PHÁT TRIỂN
+CHƯƠNG 24: DOANH NGHIỆP NHỎ VÀ VỪA
+CHƯƠNG 25: HỘI TỤ PHƯƠNG PHÁP HOẠCH ĐỊNH CHÍNH SÁCH THƯƠNG MẠI
+CHƯƠNG 26: MINH BẠCH HÓA VÀ CHỐNG THAM NHŨNG
+CHƯƠNG 27: CÁC ĐIỀU KHOẢN HÀNH CHÍNH VÀ THỂ CHẾ
+CHƯƠNG 28: GIẢI QUYẾT TRANH CHẤP
+CHƯƠNG 29: CÁC NGOẠI LỆ VÀ CÁC ĐIỀU KHOẢN CHUNG
+CHƯƠNG 30: CÁC ĐIỀU KHOẢN CUỐI CÙNG
+ -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+    $(function(){
+      function capitalize(string) {
+        string = jQuery.trim(string)
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+      $("#input").change(function(){
+        var that = $(this)
+        var result = $("#result").html("")
+        var text = that.val().split("\n")
+        
+        // Make first page
+        var p = "===Mục lục===\n"
+        for (var i in text) {
+          var t = text[i].toLowerCase(), l;
+          if (t.indexOf(":") > 0) {
+            var s = t.split(":")
+            l = capitalize(s[0])
+            t = l + ": " + capitalize(s[1])
+          } else {
+            t = l = capitalize(t)
+          }
+          p += "* [[/"+ l +"|"+ t +"]]\n"
+        }
+        var pEle = $("<textarea rows=10 cols=100 class='res'></textarea>")
+        pEle.appendTo(result)
+        pEle.val(p)
+        
+        $(".res").focus(function(){
+          $(this).select()
+        })
+      })
+    })
+    </script>
+  </body>
+</html>
